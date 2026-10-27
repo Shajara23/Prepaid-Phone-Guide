@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Prepaid Phone Guide</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#16181d;--mute:#5d6572;--line:#e1e4ea;--t1:#1a8f5c;--t2:#2563eb;--t3:#8b3fd1;--hi:#fff6d6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101216;--card:#1a1d23;--ink:#eceef2;--mute:#9aa3b0;--line:#2b3039;--t1:#3ccf8e;--t2:#6b9bff;--t3:#bf8cff;--hi:#3a3412}}
+:root[data-theme="dark"]{--bg:#101216;--card:#1a1d23;--ink:#eceef2;--mute:#9aa3b0;--line:#2b3039;--t1:#3ccf8e;--t2:#6b9bff;--t3:#bf8cff;--hi:#3a3412}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:860px;margin:0 auto;padding:20px 16px 40px}
+h1{font-size:24px;margin:0 0 4px}
+.sub{color:var(--mute);margin:0 0 16px}
+.tabs,.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+button{font:inherit;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer}
+button.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.lbl{font-size:13px;color:var(--mute);margin:8px 0 6px}
+.rec{background:var(--hi);border-radius:10px;padding:10px 14px;margin:8px 0 16px}
+.tier{background:var(--card);border:1px solid var(--line);border-left:6px solid var(--c);border-radius:12px;padding:14px;margin-bottom:14px}
+.tier.best{box-shadow:0 0 0 2px var(--c)}
+.tier h2{font-size:17px;margin:0;color:var(--c)}
+.range{color:var(--mute);font-size:13px;margin:2px 0 8px}
+.badge{font-size:12px;background:var(--c);color:#fff;border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle}
+.item{display:flex;gap:10px;justify-content:space-between;align-items:flex-start;padding:10px 0;border-top:1px solid var(--line)}
+.item a.n{font-weight:600;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--c)}
+.item a.n:hover{color:var(--c)}
+.d{color:var(--mute);font-size:13.5px;margin-top:2px}
+.p{font-weight:700;white-space:nowrap}
+.foot{color:var(--mute);font-size:12.5px;margin-top:18px}
+</style></head><body><main>
+<h1>Prepaid Phone Guide</h1>
+<p class="sub">Pick an option and a timeframe. The best-fit tier lights up. Tap any product name to open it in store search.</p>
+<div class="tabs" id="tabs"></div>
+<div class="lbl">How long do you need it?</div>
+<div class="chips" id="chips"></div>
+<div class="rec" id="rec"></div>
+<div id="out"></div>
+<p class="foot">Links open the store’s search for that exact product name, so you can check live price and stock. Prices are from your notes.</p>
+</main>
+<script>
+const W="https://www.walmart.com/search?q=",B="https://www.bestbuy.com/site/searchpage.jsp?st=";
+const O=[
+{name:"Option 1: Prepaid Phone Bundle",sub:"New hardware · Best place: Walmart",base:W,
+ rec:{3:[1],6:[2],9:[2],12:[2,3]},
+ tiers:[
+ {n:1,t:"Tier 1: Budget Essentials",r:"$20–50 · 16–64 GB",items:[
+ ["Tracfone BLU Flex (8GB)","$19.88","A simple 4G flip phone for core call and text needs."],
+ ["Straight Talk BLU Flex Flip","$29.88","Classic clamshell phone tied to the Straight Talk network."],
+ ["Walmart Family Mobile BLU Flex","$29.88","Basic flip device locked to Walmart’s carrier brand."],
+ ["Straight Talk TCL K33 5G (64GB)","$39.88","Cheapest way into entry-level 5G, with a 6.75-inch screen."],
+ ["Tracfone Motorola Moto G 2025 (64GB)","$49.88","High-value budget 5G phone with a 120Hz display."]]},
+ {n:2,t:"Tier 2: Moderate Mid-Rangers",r:"$60–200 · 128 GB",items:[
+ ["Straight Talk TCL K70 5G (128GB)","$59.88","Roomy 128GB with DTS 3D sound."],
+ ["Straight Talk Samsung Galaxy A16 5G (128GB)","$59.88","Reliable everyday phone with a Super AMOLED screen."],
+ ["Tracfone Motorola Moto G Play 2026 (64GB)","$69.88","Clean Android with a 5,200mAh multi-day battery."]]},
+ {n:3,t:"Tier 3: Premium / Prepaid Flagships",r:"$250–700+ · 128–256 GB",items:[
+ ["Straight Talk Apple iPhone 16e 5G","~$299","Subsidized, entry-tier modern iOS."],
+ ["Straight Talk Apple iPhone 16 (128GB)","~$629","Full flagship chip and cameras on prepaid for a lower upfront price."]]}]},
+{name:"Option 2: Prepaid SIM Kit",sub:"Keep your current phone · Best place: Best Buy",base:B,
+ rec:{3:[1],6:[2],9:[2],12:[3]},
+ tiers:[
+ {n:1,t:"Tier 1: The Bare Essentials",r:"$15–30 / month",items:[
+ ["Mint Mobile 6GB/mo Phone Plan 3 Months","$45.00","Best value for light users: eSIM or physical SIM with 3 months at $15/mo."],
+ ["Lively 5GB 3-Month Service Bundle","$30.00","Senior-friendly basic plan with a 5GB cap over 90 days."],
+ ["MobileX Choose Your Plan Activation Kit","$9.88","Customizable kit: buy exact GB and minute blocks."]]},
+ {n:2,t:"Tier 2: The Moderate “Sweet Spot”",r:"$35–45 / month",items:[
+ ["Mint Mobile 17GB/mo Phone Plan 3 Months","$60.00","Mid-size data bundle prepaid for 3 months."],
+ ["Verizon Prepaid Bring Your Own Phone SIM Kit","$5.00","Verizon network access for your own phone."],
+ ["AT&T Prepaid SIM Kit","$4.99","AT&T network access for your own phone."]]},
+ {n:3,t:"Tier 3: Premium Unlimited",r:"$50–65 / month",items:[
+ ["Total Wireless Keep Your Own Phone SIM Kit","$5.00","Starter kit for Total Wireless service."],
+ ["Visible Visible+ $35/mo Plan eSIM/pSIM Kit","$19–35","Visible’s plan kit in eSIM or physical SIM form."],
+ ["Mint Mobile 3-Month Unlimited Plan Kit","$90.00","Unlimited plan, paid upfront for 3 months."]]}]}];
+const C={1:"var(--t1)",2:"var(--t2)",3:"var(--t3)"};
+let o=0,m=3;
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function draw(){
+ const O1=O[o],best=O1.rec[m];
+ document.getElementById("tabs").innerHTML=O.map((x,i)=>`<button class="${i==o?'on':''}" data-o="${i}">${x.name.split(":")[0]}: ${i?'SIM Kit':'Phone Bundle'}</button>`).join("");
+ document.getElementById("chips").innerHTML=[3,6,9,12].map(x=>`<button class="${x==m?'on':''}" data-m="${x}">${x} months</button>`).join("");
+ document.getElementById("rec").innerHTML=`<b>${m} months → ${best.length>1?'Tier '+best.join(' or '):'Tier '+best[0]}</b><br><span style="color:var(--mute)">${O1.sub}</span>`;
+ document.getElementById("out").innerHTML=O1.tiers.map(t=>`<section class="tier ${best.includes(t.n)?'best':''}" style="--c:${C[t.n]}">
+ <h2>${t.t}${best.includes(t.n)?'<span class="badge">Best for '+m+' mo</span>':''}</h2><div class="range">${t.r}</div>
+ ${t.items.map(i=>`<div class="item"><div><a class="n" href="${O1.base+encodeURIComponent(i[0])}" target="_blank" rel="noopener">${esc(i[0])} ↗</a><div class="d">${esc(i[2])}</div></div><div class="p">${i[1]}</div></div>`).join("")}</section>`).join("");
+}
+document.addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;
+ if(b.dataset.o!==undefined)o=+b.dataset.o;if(b.dataset.m!==undefined)m=+b.dataset.m;draw()});
+draw();
+</script></body></html>
